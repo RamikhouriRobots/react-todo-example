@@ -9,6 +9,11 @@ export function getAll(route) {
     }
 }
 
+export function post(route, object)
+{
+  return axios.post(`${apiRootUri}/${route}`, object);
+}
+
 export function addNew(route, object) {
   return axios.post(`${apiRootUri}/${route}`, object);
 }

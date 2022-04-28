@@ -1,6 +1,7 @@
 import './App.css';
 import TasksContainer from './containers/TasksContainer';
 import NotFound from './components/NotFound';
+import Login from './components/Login'
 import React from "react";
 import {
   BrowserRouter as Router,
@@ -9,8 +10,9 @@ import {
 
 const App = () => {
   let routes = useRoutes([
-    { path: "/", element: <TasksContainer /> },
+    { path: "/", element: <Login /> },
     { path: "not-found", element: <NotFound /> },
+    { path: "/tasks", element: <TasksContainer /> },
   ]);
   return routes;
 };
