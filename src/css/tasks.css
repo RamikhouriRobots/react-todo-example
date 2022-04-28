@@ -1,0 +1,13 @@
+.task_container{
+    border: 1px solid #ccc;
+    padding: 5px;
+    height: auto;
+    overflow: auto;
+    margin-top:10px ;
+  }
+
+  .task {
+    flex-grow: 1;
+    margin-left: 10px;
+ }
+ 
