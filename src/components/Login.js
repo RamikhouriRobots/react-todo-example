@@ -19,8 +19,9 @@ function Login()  {
         const userAction = {type:'ADD_USER',user: {
             name: `${data.firstName} ${data.lastName}`,
             id : data.userId,
-            email: data.email
-        }, token: data.token}
+            email: data.email,
+            token: data.token
+        }, }
 
         store.dispatch(userAction);
 
