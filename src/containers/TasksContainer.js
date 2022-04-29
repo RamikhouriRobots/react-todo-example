@@ -6,15 +6,16 @@ import {
   getAll,
 } from "../services/apiService";
 import "../css/tasks.css"
+import store from "../services/store";
 
 
 class TasksContainer extends Component {
-  state = { tasks: [], currentTask: "" };
+  state = { tasks: [], currentTask: "" , user:""};
   async componentDidMount() {
     try {
       const { data } = await getAll('tasks');
       if (data)
-      this.setState({ tasks: data });
+      this.setState({ tasks: data, user:store.getState().user.name });
     } catch (error) {
       console.error();
     }
@@ -66,8 +67,10 @@ class TasksContainer extends Component {
   };
 
   render(){
-    const {tasks} = this.state;
+    const {tasks, user} = this.state;
     return (
+      <div style={{margin:"20px"}}>
+      <span>Welcome {user}</span>
       <div className="container">
         <div className='heading'>Create your own task</div>
         <form onSubmit={this.handleSubmit} className="flex-column"
@@ -101,7 +104,7 @@ class TasksContainer extends Component {
            }
          </div>
         </form>
-      </div>)
+      </div></div>)
   }
 
 }
