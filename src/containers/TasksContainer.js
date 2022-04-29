@@ -7,7 +7,6 @@ import {
 } from "../services/apiService";
 import "../css/tasks.css"
 import store from "../services/store";
-import userEvent from "@testing-library/user-event";
 
 
 class TasksContainer extends Component {
@@ -15,11 +14,11 @@ class TasksContainer extends Component {
   async componentDidMount() {
     try {
       const { data } = await getAll('tasks');
-      console.log(data)
       if (data)
       {
-        const {name} = store.getState().user ;
-        this.setState({ tasks: data, user: name });
+        const currentUser = localStorage.getItem('user');
+        const {name} = store.getState().user || JSON.parse(currentUser);
+        this.setState({ tasks: data, user: name || 'N/A' });
       }
       
     } catch (error) {

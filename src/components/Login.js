@@ -15,13 +15,14 @@ function Login()  {
       const { data } = await post('login',{ email: email , password: password});
       if (data && data.token)
       {
-        localStorage.setItem('token',data.token);
-        const userAction = {type:'ADD_USER',user: {
+        const currentUser = {
             name: `${data.firstName} ${data.lastName}`,
             id : data.userId,
             email: data.email,
             token: data.token
-        }, }
+        }
+        localStorage.setItem('user',JSON.stringify(currentUser));
+        const userAction = {type:'ADD_USER',user: currentUser }
 
         store.dispatch(userAction);
 
