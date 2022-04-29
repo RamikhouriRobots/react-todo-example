@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import {
     post,
   } from "../services/apiService";
+import store from "../services/store";
 
 function Login()  {
    const [email, setEmail] = useState();
@@ -15,6 +16,14 @@ function Login()  {
       if (data && data.token)
       {
         localStorage.setItem('token',data.token);
+        const userAction = {type:'ADD_USER',user: {
+            name: `${data.firstName} ${data.lastName}`,
+            id : data.userId,
+            email: data.email
+        }, token: data.token}
+
+        store.dispatch(userAction);
+
         navigate("/tasks");
       }
       } catch (error) {

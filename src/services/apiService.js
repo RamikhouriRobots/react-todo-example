@@ -1,6 +1,12 @@
 import axios from "axios";
 const apiRootUri = `${process.env.REACT_APP_API_URI}`;
 
+export function setToken(token) {
+  axios.defaults.headers.common['Authorization'] =
+      `Bearer ${token}`;
+}
+
+
 export function getAll(route) {
     try {
      return axios.get(`${apiRootUri}/${route}`);   
