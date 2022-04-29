@@ -7,12 +7,14 @@ import store from "../services/store";
 
 function Login()  {
    const [email, setEmail] = useState();
+   const [error, setError] = useState(false);
    let navigate = useNavigate();
    const [password, setPassword] = useState();
    const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const { data } = await post('login',{ email: email , password: password});
+      setError(false);
       if (data && data.token)
       {
         const currentUser = {
@@ -28,8 +30,12 @@ function Login()  {
 
         navigate("/tasks");
       }
+      else
+      setError(true);
       } catch (error) {
+        setError(true);
       console.error(error);
+      
     }
   };
     return (
@@ -48,6 +54,7 @@ function Login()  {
             <button onClick={handleSubmit}>Submit</button>
           </div>
         </form>
+        <div className="error-message" style={{ display: error ? "block" : "none" }}>Username or password mismatched </div>
       </div>)
 
 }

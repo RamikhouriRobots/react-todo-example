@@ -51,7 +51,13 @@ input[type=submit], button {
   align-items: center;
 }
 
-
+.error-message{
+  background-color: red;
+  margin: 10px;
+  border-radius: 5px;
+  color: white;
+  padding: 5px;
+}
 
 .container{
   margin:25px auto;

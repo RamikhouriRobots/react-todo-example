@@ -17,7 +17,12 @@ export function getAll(route) {
 
 export function post(route, object)
 {
-  return axios.post(`${apiRootUri}/${route}`, object);
+  try {
+    return axios.post(`${apiRootUri}/${route}`, object);
+  } catch (error) {
+    console.log(error)
+  }
+
 }
 
 export function addNew(route, object) {
